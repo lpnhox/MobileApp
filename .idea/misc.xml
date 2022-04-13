@@ -6,6 +6,7 @@
         <entry key="..\:/Mobile/MobileApp-4aff9c1d9adf468f755b631b937749187488ce14/app/src/main/res/layout/activity_add_music.xml" value="0.563819095477387" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/ic_android_heart_24dp.xml" value="0.1275" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/ic_baseline_architecture_24.xml" value="0.243" />
+        <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/ic_baseline_cloud_upload_24.xml" value="0.245" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/ic_baseline_library_music_24.xml" value="0.2265" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.243" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1695" />
@@ -17,6 +18,7 @@
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/song_item.xml" value="0.25" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/song_list_item.xml" value="0.25" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/songcore.xml" value="0.4" />
+        <entry key="..\:/Mobile/MobileApp/app/src/main/res/menu/app_menu.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/edit_text_layout.xml" value="0.244" />
         <entry key="app/src/main/res/layout/activity_add_music.xml" value="0.1897644927536232" />
       </map>

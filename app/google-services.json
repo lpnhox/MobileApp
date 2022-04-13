@@ -1,0 +1,47 @@
+  {
+  "project_info": {
+    "project_number": "633545670910",
+    "project_id": "mobileapp-ce41f",
+    "storage_bucket": "mobileapp-ce41f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:633545670910:android:40a8968077d6ea67f665af",
+        "android_client_info": {
+          "package_name": "vu.htr.cs.muzikapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "633545670910-bc4eoat2gsfkudjj6hhun2glp29in3im.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vu.htr.cs.muzikapp",
+            "certificate_hash": "d4e194bf95a1ddb10c267cc1b24f51167d0cdf1f"
+          }
+        },
+        {
+          "client_id": "633545670910-a7bfvs1rg3vgtlt8lk60a4i7d8k3b514.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArTBtAsYUs3ClWdq30hYyISGhnfgsZ99s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "633545670910-a7bfvs1rg3vgtlt8lk60a4i7d8k3b514.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

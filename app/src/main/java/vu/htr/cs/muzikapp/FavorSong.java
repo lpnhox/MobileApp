@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,12 +17,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FavorSong extends AppCompatActivity {
 
+    private boolean checkPermission = false;
     List<String> songsNameList;
     List<String> songUrlList;
     List<String> songsArtistList;
@@ -79,29 +86,35 @@ public class FavorSong extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==R.id.uploadItem){
+            if(validatePermissions()){
+                Intent intent = new Intent(this,AddMusic.class);
+                startActivity(intent);
+            }
 
         }
         return super.onOptionsItemSelected(item);
     }
     private boolean validatePermissions(){
-//        Dexter.withContext(getApplicationContext())
-//                .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-//                .withListener(new PermissionListener() {
-//                    @Override
-//                    public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
-//                        checkPermission = true;
-//                    }
-//                    @Override
-//                    public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
-//                        checkPermission = false;
-//                    }
-//                    @Override
-//                    public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
-//                        permissionToken.continuePermissionRequest();
-//                    }
-//                }).check();
-//        return checkPermission;
-        return true;
+
+        Dexter.withActivity(FavorSong.this).withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                .withListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response) {
+                        checkPermission=true;
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response) {
+                        checkPermission=false;
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                }).check();
+        return checkPermission;
+
 
     }
 }

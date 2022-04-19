@@ -9,7 +9,7 @@ import android.widget.Button;
 
 
 public class MainActivity extends AppCompatActivity {
-    Button trans_to_favorbtn;
+    Button trans_to_favorbtn, trans_to_listSong;
 
 
     @Override
@@ -23,6 +23,15 @@ public class MainActivity extends AppCompatActivity {
                 Intent favourIntent= new Intent(MainActivity.this, FavorSong.class);
                 //favourIntent.putExtra("abc",123);
                 startActivity(favourIntent);
+            }
+        });
+
+        trans_to_listSong = findViewById(R.id.trans_to_listSong);
+        trans_to_listSong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent listIntent = new Intent(MainActivity.this, ListSong.class);
+                startActivity(listIntent);
             }
         });
 

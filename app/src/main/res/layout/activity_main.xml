@@ -11,4 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Chuyen qua ds yeu thich" />
+
+    <Button
+        android:id="@+id/trans_to_listSong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chuyen qua ds nhac" />
 </LinearLayout>

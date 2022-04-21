@@ -2,6 +2,7 @@ package vu.htr.cs.muzikapp.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         button_signin= findViewById(R.id.button_signin);
         button_forgot_password = findViewById(R.id.button_forgot_password);
         button_signin.setOnClickListener(this);
+        button_forgot_password.setOnClickListener(this);
 
     }
 
@@ -29,6 +31,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         }
         else if(view==button_forgot_password){
+            Intent forgotIntent = new Intent(LoginActivity.this,ForgotPassword.class);
+            startActivity(forgotIntent);
 
         }
     }

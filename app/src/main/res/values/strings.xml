@@ -26,10 +26,10 @@ Chưa có tài khoản?
 Khi đăng ký, bạn đồng ý với
 <b>Những điều khoản</b>
 </string>
-    <string name="text_signup_message">Hello, let\'s set up your account</string>
-    <string name="text_forgot_password_title">Forgot password? No worries</string>
-    <string name="text_forgot_password_message">We will send you a link to reset your password</string>
+    <string name="text_signup_message">Tham gia cùng chúng tôi!</string>
+    <string name="text_forgot_password_title">Quên mật khẩu? Đừng lo lắng</string>
+    <string name="text_forgot_password_message">Chúng tôi sẽ gửi bạn liên kết khôi phục mật khẩu</string>
     <string name="hint_email">Email</string>
-    <string name="hint_phone">Phone</string>
-    <string name="hint_confirm_password">Confirm Password</string>
+    <string name="hint_phone">SDT</string>
+    <string name="hint_confirm_password">Nhập lại mật khẩu</string>
 </resources>

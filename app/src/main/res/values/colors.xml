@@ -20,6 +20,7 @@
     <color name="md_cyan_A700">#00B8D4</color>
 
     <color name="colorBackground">#fff</color>
+    <color name="actionbarOpacity">#00000000</color>
     <color name="colorIcon">#cccccc</color>
     <color name="colorTextInputBackground">#F7F7F7</color>
 

@@ -25,7 +25,6 @@
         app:previous_icon_color="@color/black"
         app:progress_color="@color/black"
         app:random_icon_color="@color/black"
-        app:random_icon="@drawable/apple"
         app:repeat_icon_color="@color/black"
         app:seek_bar_color="@color/black"
         app:text_audio_current_duration_color="@color/black"

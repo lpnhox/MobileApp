@@ -11,9 +11,11 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
     <com.example.jean.jcplayer.view.JcPlayerView
-        android:id="@+id/jcplayer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:id="@+id/jcplayerfavor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:visibility="gone"/>
 
 
 </LinearLayout>

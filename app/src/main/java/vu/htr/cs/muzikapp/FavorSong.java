@@ -9,10 +9,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 
+import com.example.jean.jcplayer.model.JcAudio;
+import com.example.jean.jcplayer.view.JcPlayerView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,13 +35,19 @@ import java.util.List;
 public class FavorSong extends AppCompatActivity {
 
     private boolean checkPermission = false;
+    ListView lvFavorMusic;
+    ListAdapter adapter;
+
     List<String> songsNameList;
     List<String> songUrlList;
     List<String> songsArtistList;
     List<String> songsDurationList;
     List<String> thumbnail;
-    ListAdapter adapter;
-    ListView lvFavorMusic;
+
+
+    JcPlayerView jcPlayerView;
+    List<JcAudio> jcAudios;
+
 
 
     @Override
@@ -51,7 +61,18 @@ public class FavorSong extends AppCompatActivity {
         songsArtistList = new ArrayList<>();
         songsDurationList = new ArrayList<>();
         thumbnail = new ArrayList<>();
+        jcAudios=new ArrayList<>();
+        jcPlayerView = findViewById(R.id.jcplayerfavor);
         retrieveSongs();
+        lvFavorMusic.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                jcPlayerView.playAudio(jcAudios.get(i));
+                jcPlayerView.setVisibility(View.VISIBLE);
+                jcPlayerView.createNotification();
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
     public void retrieveSongs(){
         DatabaseReference dbref= FirebaseDatabase.getInstance().getReference("Songs");
@@ -65,9 +86,12 @@ public class FavorSong extends AppCompatActivity {
                     songsArtistList.add(songObj.getSongArtist());
                     songsDurationList.add(songObj.getSongDuration());
                     thumbnail.add(songObj.getImageUrl());
+
+                    jcAudios.add(JcAudio.createFromURL(songObj.getSongName(), songObj.getSongUrl()));
                 }
 
                 adapter = new ListAdapter(getApplicationContext(),songsNameList,thumbnail,songsArtistList,songsDurationList);
+                jcPlayerView.initPlaylist(jcAudios, null);
                 lvFavorMusic.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
 
@@ -100,7 +124,7 @@ public class FavorSong extends AppCompatActivity {
     }
     private boolean validatePermissions(){
 
-        Dexter.withActivity(FavorSong.this).withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+        Dexter.withContext(FavorSong.this).withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
                 .withListener(new PermissionListener() {
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse response) {

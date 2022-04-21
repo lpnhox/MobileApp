@@ -18,6 +18,7 @@
     <string name="text_signin_message">Đăng nhập</string>
     <string name="text_signin_social_media">Hoặc sử dụng mạng xã hội</string>
     <string name="text_signup_social_media">Hoặc sử dụng mạng xã hội</string>
+    <string name="minimum_password">Mật khẩu quá ngắn</string>
     <string name="text_signin_signup">
 Chưa có tài khoản?
 <b>Đăng ký</b>

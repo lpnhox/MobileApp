@@ -67,6 +67,7 @@
                         android:background="@android:color/transparent"
                         android:drawableStart="@drawable/ic_person"
                         android:drawableLeft="@drawable/ic_person"
+                        android:textColor="@color/black"
                         android:drawablePadding="12dp"
                         android:hint="@string/hint_username"
                         android:imeOptions="actionNext"
@@ -102,6 +103,7 @@
                         android:background="@android:color/transparent"
                         android:drawableStart="@drawable/ic_lock"
                         android:drawableLeft="@drawable/ic_lock"
+                        android:textColor="@color/black"
                         android:drawablePadding="12dp"
                         android:hint="@string/hint_password"
                         android:imeOptions="actionDone"
@@ -123,7 +125,7 @@
                 android:textColor="@color/black"/>
 
             <Button
-                android:id="@+id/button_signin_login"
+                android:id="@+id/button_login"
                 style="@style/Button1"
                 android:layout_width="342dp"
                 android:layout_height="wrap_content"

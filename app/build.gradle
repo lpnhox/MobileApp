@@ -41,8 +41,9 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:29.2.1')
     implementation 'com.google.firebase:firebase-storage'
 
-    implementation 'com.squareup.picasso:picasso:2.8'
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.makeramen:roundedimageview:2.3.0'
-    implementation 'com.karumi:dexter:6.0.1'
+    implementation 'com.karumi:dexter:6.2.1'
+    implementation "com.github.jeancsanchez:JcPlayer:2.7.1"
 
 }

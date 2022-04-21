@@ -2,6 +2,7 @@ package vu.htr.cs.muzikapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
+
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,10 +39,12 @@ public class FavorSong extends AppCompatActivity {
     ListAdapter adapter;
     ListView lvFavorMusic;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faver_song);
+
         lvFavorMusic = findViewById(R.id.listFavorMusic);
         songsNameList = new ArrayList<>();
         songUrlList = new ArrayList<>();

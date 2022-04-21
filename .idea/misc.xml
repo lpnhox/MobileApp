@@ -4,15 +4,18 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Mobile/MobileApp-4aff9c1d9adf468f755b631b937749187488ce14/app/src/main/res/layout/activity_add_music.xml" value="0.563819095477387" />
+        <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/apple.xml" value="0.119" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/button1_bg.xml" value="0.2495" />
+        <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/gradientdescent.xml" value="0.119" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/ic_android_heart_24dp.xml" value="0.1275" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/ic_baseline_architecture_24.xml" value="0.243" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/ic_baseline_cloud_upload_24.xml" value="0.245" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/ic_baseline_library_music_24.xml" value="0.2265" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.243" />
+        <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/wave.xml" value="0.121" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/activity_add_music.xml" value="0.24583333333333332" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/activity_faver_song.xml" value="0.25" />
-        <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/activity_forgot_password.xml" value="0.264" />
+        <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/activity_forgot_password.xml" value="0.1" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/activity_list_song.xml" value="0.264" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/activity_main.xml" value="0.2" />

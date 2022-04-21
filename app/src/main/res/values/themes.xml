@@ -16,16 +16,14 @@
     </style>
     <style name="MyTheme" parent="Theme.AppCompat.Light.DarkActionBar"
         >
-        <item name="colorPrimary">@color/myred</item>
-        <item name="colorPrimaryDark">@color/Sky</item>
-        <item name="colorOnPrimary" >@color/Sakura</item>
-        <item name="colorPrimaryVariant" >@color/myskygarden</item>
+        <item name="colorPrimary">@color/Sakura</item>
+        <item name="colorPrimaryDark">@color/Sakura</item>
+        <item name="android:textColorPrimary">@color/black</item>
 
-        <item name="android:textColorPrimary">@color/White</item>
         <item name="android:windowBackground">@color/White</item>
-        <item name="colorAccent" >@color/myred</item>
-        <item name="android:textColorSecondary">@color/White</item>
-        <item name="android:navigationBarColor">@color/Sky</item>
+        <item name="colorAccent" >@color/Sakura</item>
+
+        <item name="android:navigationBarColor">@color/Sakura</item>
 
     </style>
     <style name="TextyButton" parent="Widget.AppCompat.Button.Borderless">

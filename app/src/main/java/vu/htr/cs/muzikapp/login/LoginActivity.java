@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(vu.htr.cs.muzikapp.R.layout.activity_login);
+        getSupportActionBar().hide();
         button_signup= findViewById(R.id.button_signup);
         button_forgot_password = findViewById(R.id.button_forgot_password);
         button_login=findViewById(R.id.button_login);

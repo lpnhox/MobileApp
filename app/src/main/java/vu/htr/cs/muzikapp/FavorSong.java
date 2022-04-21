@@ -56,6 +56,7 @@ public class FavorSong extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faver_song);
+        getSupportActionBar().hide();
 
         lvFavorMusic = findViewById(R.id.listFavorMusic);
         songsNameList = new ArrayList<>();
@@ -71,7 +72,7 @@ public class FavorSong extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 jcPlayerView.playAudio(jcAudios.get(i));
                 jcPlayerView.setVisibility(View.VISIBLE);
-                jcPlayerView.createNotification();
+                jcPlayerView.createNotification(); // default icon - Goi trinh phat thong bao tai activity nay
                 adapter.notifyDataSetChanged();
             }
         });

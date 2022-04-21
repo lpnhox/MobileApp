@@ -2,8 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".FavorSong">
 
     <ListView
         android:id="@+id/listFavorMusic"
@@ -12,10 +15,25 @@
         android:layout_weight="1" />
     <com.example.jean.jcplayer.view.JcPlayerView
         android:id="@+id/jcplayerfavor"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:visibility="gone"/>
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/gradientdescent"
+        android:visibility="gone"
+        app:next_icon_color="@color/black"
+        app:pause_icon_color="@color/black"
+        app:play_icon_color="@color/black"
+        app:previous_icon_color="@color/black"
+        app:progress_color="@color/black"
+        app:random_icon_color="@color/black"
+        app:random_icon="@drawable/apple"
+        app:repeat_icon_color="@color/black"
+        app:seek_bar_color="@color/black"
+        app:text_audio_current_duration_color="@color/black"
+        app:text_audio_duration_color="@color/black"
+        app:text_audio_title_color="@color/black"
+
+
+        />
 
 
 </LinearLayout>

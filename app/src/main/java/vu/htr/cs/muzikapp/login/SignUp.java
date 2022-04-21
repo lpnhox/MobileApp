@@ -42,6 +42,7 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        getSupportActionBar().hide();
         //lay firebase auth instance
         auth=FirebaseAuth.getInstance();
         et_phone=findViewById(R.id.et_phone);

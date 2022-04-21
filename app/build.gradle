@@ -46,6 +46,9 @@ dependencies {
 
     implementation platform('com.google.firebase:firebase-bom:29.2.1')
     implementation 'com.google.firebase:firebase-storage'
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-firestore'
+
 
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.makeramen:roundedimageview:2.3.0'

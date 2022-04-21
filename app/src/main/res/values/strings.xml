@@ -1,3 +1,35 @@
 <resources>
     <string name="app_name">MuzikApp</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Đăng nhập hoặc đăng ký</string>
+    <string name="action_sign_in_short">Đăng nhập</string>
+    <string name="welcome">Chào mừng !</string>
+    <string name="invalid_username">Tài khoản khhoong hợp lệ</string>
+    <string name="invalid_password">Mật khẩu phải lớn hơn 5 ký tự</string>
+    <string name="login_failed">Đăng nhập thất bại</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="button_sign_in">Đăng nhập</string>
+    <string name="button_sign_up">Đăng ký</string>
+    <string name="button_send">Gửi</string>
+    <string name="text_forgot_password">Quên mật khẩu?</string>
+    <string name="text_signin_message">Đăng nhập</string>
+    <string name="text_signin_social_media">Hoặc sử dụng mạng xã hội</string>
+    <string name="text_signup_social_media">Hoặc sử dụng mạng xã hội</string>
+    <string name="text_signin_signup">
+Chưa có tài khoản?
+<b>Sign up</b>
+</string>
+    <string name="text_signup_terms">
+Khi đăng ký, bạn đồng ý với
+<b>Những điều khoản</b>
+</string>
+    <string name="text_signup_message">Hello, let\'s set up your account</string>
+    <string name="text_forgot_password_title">Forgot password? No worries</string>
+    <string name="text_forgot_password_message">We will send you a link to reset your password</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_phone">Phone</string>
+    <string name="hint_confirm_password">Confirm Password</string>
 </resources>

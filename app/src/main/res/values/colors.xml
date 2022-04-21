@@ -16,5 +16,11 @@
     <color name="Pink" >#f25477</color>
     <color name="Cherry" >#ffdcdc</color>
     <color name="myskygarden" >#d4eaee</color>
+    <color name="md_black_1000">#000000</color>
+    <color name="md_cyan_A700">#00B8D4</color>
+
+    <color name="colorBackground">#fff</color>
+    <color name="colorIcon">#cccccc</color>
+    <color name="colorTextInputBackground">#F7F7F7</color>
 
 </resources>

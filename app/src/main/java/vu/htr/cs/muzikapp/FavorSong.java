@@ -2,12 +2,9 @@ package vu.htr.cs.muzikapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +15,8 @@ import android.widget.Toast;
 
 import com.example.jean.jcplayer.model.JcAudio;
 import com.example.jean.jcplayer.view.JcPlayerView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -56,7 +55,9 @@ public class FavorSong extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faver_song);
-        getSupportActionBar().hide();
+        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+        getSupportActionBar().setTitle(user.getEmail());
+        //getSupportActionBar().hide();
 
         lvFavorMusic = findViewById(R.id.listFavorMusic);
         songsNameList = new ArrayList<>();

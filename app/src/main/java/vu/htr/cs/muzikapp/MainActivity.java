@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         trans_to_favorbtn= findViewById(R.id.trans_to_favorrbtn);
         trans_to_favorbtn.setOnClickListener(new View.OnClickListener() {
             @Override

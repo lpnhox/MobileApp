@@ -10,7 +10,6 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,7 +25,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     TextInputEditText et_username;
     EditText et_password;
     FirebaseAuth auth;
-    ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

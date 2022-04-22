@@ -33,4 +33,5 @@ Khi đăng ký, bạn đồng ý với
     <string name="hint_email">Email</string>
     <string name="hint_phone">SDT</string>
     <string name="hint_confirm_password">Nhập lại mật khẩu</string>
+    <string name="artist_name">Artist Name</string>
 </resources>

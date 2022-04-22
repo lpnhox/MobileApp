@@ -13,18 +13,25 @@
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/ic_baseline_cloud_upload_24.xml" value="0.245" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/ic_baseline_library_music_24.xml" value="0.2265" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.243" />
+        <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1585" />
+        <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/ic_facebook.xml" value="0.1585" />
+        <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1585" />
+        <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/ic_outline_favorite_border_24.xml" value="0.1585" />
+        <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/ic_phone.xml" value="0.1585" />
+        <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/ic_plus.xml" value="0.1585" />
+        <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/ic_twitter.xml" value="0.1585" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/drawable/wave.xml" value="0.121" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/activity_add_music.xml" value="0.24583333333333332" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/activity_faver_song.xml" value="0.25" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/activity_forgot_password.xml" value="0.1" />
-        <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/activity_list_song.xml" value="0.264" />
+        <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/activity_list_song.xml" value="0.1" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/favor_song.xml" value="0.25" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/song_favoritem.xml" value="0.264" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/song_item.xml" value="0.25" />
-        <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/song_list_item.xml" value="0.4" />
+        <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/song_list_item.xml" value="0.264" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/songcore.xml" value="0.4" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/menu/app_menu.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/edit_text_layout.xml" value="0.244" />

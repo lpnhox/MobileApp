@@ -14,11 +14,14 @@ import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 
+import com.example.jean.jcplayer.model.JcAudio;
+import com.example.jean.jcplayer.view.JcPlayerView;
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class SongAdapter extends BaseAdapter implements Filterable {

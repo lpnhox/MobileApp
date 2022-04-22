@@ -22,4 +22,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="chuyen qua trang login" />
+    <Button
+        android:id="@+id/trans_add_music"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="chuyen qua trang add music" />
 </LinearLayout>

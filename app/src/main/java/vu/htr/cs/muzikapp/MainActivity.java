@@ -9,7 +9,7 @@ import android.widget.Button;
 
 
 public class MainActivity extends AppCompatActivity {
-    Button trans_to_favorbtn, trans_to_listSong,trans_to_login;
+    Button trans_to_favorbtn, trans_to_listSong,trans_to_login, trans_to_add_music;
 
 
     @Override
@@ -40,6 +40,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent loginIntent= new Intent(MainActivity.this,vu.htr.cs.muzikapp.login.LoginActivity.class);
                 startActivity(loginIntent);
+            }
+        });
+        trans_to_add_music = findViewById(R.id.trans_add_music);
+        trans_to_add_music.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent addMusicIntent = new Intent(MainActivity.this, AddMusic.class);
+                startActivity(addMusicIntent);
             }
         });
 

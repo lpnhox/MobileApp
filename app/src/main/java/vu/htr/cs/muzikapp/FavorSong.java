@@ -21,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
@@ -32,9 +33,12 @@ import com.karumi.dexter.listener.single.PermissionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import vu.htr.cs.muzikapp.favourites.Favourite;
+
 public class FavorSong extends AppCompatActivity {
 
     private boolean checkPermission = false;
+    FirebaseUser user;
 
     ListView lvFavorMusic;
     ListAdapter adapter;
@@ -45,19 +49,16 @@ public class FavorSong extends AppCompatActivity {
     List<String> songsDurationList;
     List<String> thumbnail;
 
-
     JcPlayerView jcPlayerView;
     List<JcAudio> jcAudios;
-
-
+    List<String> userFvSID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faver_song);
-        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
-        getSupportActionBar().setTitle(user.getEmail());
-        //getSupportActionBar().hide();
+        user= FirebaseAuth.getInstance().getCurrentUser();
+        getSupportActionBar().hide();
 
         lvFavorMusic = findViewById(R.id.listFavorMusic);
         songsNameList = new ArrayList<>();
@@ -65,9 +66,12 @@ public class FavorSong extends AppCompatActivity {
         songsArtistList = new ArrayList<>();
         songsDurationList = new ArrayList<>();
         thumbnail = new ArrayList<>();
+
+        userFvSID= new ArrayList<>();
         jcAudios=new ArrayList<>();
         jcPlayerView = findViewById(R.id.jcplayerfavor);
-        retrieveSongs();
+
+        getUserFavoriteSongs();
         lvFavorMusic.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -77,34 +81,72 @@ public class FavorSong extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
+        lvFavorMusic.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                DatabaseReference favorDbref= FirebaseDatabase.getInstance().getReference("Favourites");
+                favorDbref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot ds : snapshot.getChildren()){
+                            Favourite fvObj= ds.getValue(Favourite.class);
+                            Boolean myresult= fvObj.getUserEmail().equalsIgnoreCase(user.getEmail());
+                            if(myresult){
+                                userFvSID.add(fvObj.getSongId());
+                            }
+                        }
+
+                        //logic cua minh o day
+                       Query itemRemove = favorDbref.orderByChild("songId").
+                                equalTo(userFvSID.get(i));
+                        itemRemove.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for (DataSnapshot ds: snapshot.getChildren()) {
+                                    ds.getRef().removeValue();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Toast.makeText(FavorSong.this, "Không thể xóa!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(FavorSong.this, "FAILED!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                Intent reload=new Intent(FavorSong.this,FavorSong.class);
+                finish();
+                startActivity(reload);
+                return false;
+            }
+        });
     }
-    public void retrieveSongs(){
-        DatabaseReference dbref= FirebaseDatabase.getInstance().getReference("Songs");
-        dbref.addValueEventListener(new ValueEventListener() {
+    public void getUserFavoriteSongs(){
+        DatabaseReference favorDbref= FirebaseDatabase.getInstance().getReference("Favourites");
+//        Favourite myFa=new Favourite(user.getEmail(),"-N0CO1GwbPvqC4rDANbG");
+//        favorDbref.child(favorDbref.push().getKey()).setValue(myFa);
+        favorDbref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot ds : snapshot.getChildren()){
-                    Song songObj = ds.getValue(Song.class);
-                    songsNameList.add(songObj.getSongName());
-                    songUrlList.add(songObj.getSongUrl());
-                    songsArtistList.add(songObj.getSongArtist());
-                    songsDurationList.add(songObj.getSongDuration());
-                    thumbnail.add(songObj.getImageUrl());
-
-                    jcAudios.add(JcAudio.createFromURL(songObj.getSongName(), songObj.getSongUrl()));
+                    Favourite fvObj= ds.getValue(Favourite.class);
+                    Boolean myresult= fvObj.getUserEmail().equalsIgnoreCase(user.getEmail());
+                    if(myresult){
+                        userFvSID.add(fvObj.getSongId());
+                    }
                 }
-
-                adapter = new ListAdapter(getApplicationContext(),songsNameList,thumbnail,songsArtistList,songsDurationList);
-                jcPlayerView.initPlaylist(jcAudios, null);
-                lvFavorMusic.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-
+                retrieveSongs();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(FavorSong.this, "FAILED!", Toast.LENGTH_SHORT).show();
-
             }
         });
     }
@@ -149,4 +191,38 @@ public class FavorSong extends AppCompatActivity {
 
 
     }
+
+    private void retrieveSongs(){
+        DatabaseReference dbref= FirebaseDatabase.getInstance().getReference("Songs");
+        dbref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot ds : snapshot.getChildren()){
+                    if(userFvSID.contains(ds.getKey())){
+                        Song songObj = ds.getValue(Song.class);
+                        songsNameList.add(songObj.getSongName());
+                        songUrlList.add(songObj.getSongUrl());
+                        songsArtistList.add(songObj.getSongArtist());
+                        songsDurationList.add(songObj.getSongDuration());
+                        thumbnail.add(songObj.getImageUrl());
+
+                        jcAudios.add(JcAudio.createFromURL(songObj.getSongName(), songObj.getSongUrl()));
+                    }
+                }
+
+                adapter = new ListAdapter(getApplicationContext(),songsNameList,thumbnail,songsArtistList,songsDurationList);
+                jcPlayerView.initPlaylist(jcAudios, null);
+                lvFavorMusic.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(FavorSong.this, "FAILED!", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
 }

@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/MyTheme">
         <activity
+            android:name=".SearchResult"
+            android:exported="false" />
+        <activity
             android:name=".login.ForgotPassword"
             android:exported="false" />
         <activity

@@ -3,15 +3,11 @@ package vu.htr.cs.muzikapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.Filter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jean.jcplayer.model.JcAudio;
@@ -22,23 +18,21 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.FilterReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import vu.htr.cs.muzikapp.favourites.Favourite;
 
-public class ListSong extends AppCompatActivity {
+public class SearchResult extends AppCompatActivity {
     FirebaseUser user;
 
-    ListView listViewSong;
-    ArrayList<Song> listSong;
+    ListView listView_result;
+    ArrayList<Song> listRes;
     SongAdapter adapter;
-    EditText searchView_song;
-    ImageView searchSong_btn;
+    TextView textView_result;
 
     JcPlayerView jcPlayerView;
     List<JcAudio> jcAudios;
@@ -48,38 +42,23 @@ public class ListSong extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_song);
+        setContentView(R.layout.activity_search_result);
 
-        searchSong_btn = findViewById(R.id.searchSong_btn);
-        searchView_song = findViewById(R.id.searchView_song);
-        listViewSong = findViewById(R.id.listViewSong);
-        listSong = new ArrayList<>();
-
+        listView_result = findViewById(R.id.listViewResult);
+        textView_result = findViewById(R.id.textView_result);
+        jcPlayerView = findViewById(R.id.jcplayerres);
+        listRes = new ArrayList<>();
         jcAudios=new ArrayList<>();
-        jcPlayerView = findViewById(R.id.jcplayersong);
         songIds = new ArrayList<>();
+
+        String enter = getIntent().getStringExtra("enter");
+        textView_result.setText(enter);
 
         user= FirebaseAuth.getInstance().getCurrentUser();
 
-        displaySongs();
+        displayRes(textView_result.getText().toString());
 
-        searchSong_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (searchView_song.getText().toString().isEmpty()){
-                    Toast.makeText(ListSong.this, "Vui lòng nhập tên bài hát!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent resultIntent = new Intent(ListSong.this, SearchResult.class);
-                    resultIntent.putExtra("enter",searchView_song.getText().toString());
-                    startActivity(resultIntent);
-                }
-
-            }
-        });
-
-
-
-        listViewSong.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView_result.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 jcPlayerView.playAudio(jcAudios.get(i));
@@ -88,7 +67,7 @@ public class ListSong extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
-        listViewSong.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listView_result.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 DatabaseReference favorDbref= FirebaseDatabase.getInstance().getReference("Favourites");
@@ -102,12 +81,12 @@ public class ListSong extends AppCompatActivity {
                         String id = favorDbref.push().getKey();
                         Favourite fv=new Favourite(user.getEmail(), songIds.get(i));
                         favorDbref.child(id).setValue(fv);
-                        Toast.makeText(ListSong.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SearchResult.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
 
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(ListSong.this, "FAILED!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SearchResult.this, "FAILED!", Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -116,30 +95,34 @@ public class ListSong extends AppCompatActivity {
         });
 
     }
-
-    public void displaySongs(){
+    public void displayRes(String enter){
         DatabaseReference dbref= FirebaseDatabase.getInstance().getReference("Songs");
         dbref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot ds : snapshot.getChildren()){
                     Song songObj = ds.getValue(Song.class);
-                    listSong.add(new Song(songObj.getSongName(),songObj.getSongUrl(),songObj.getImageUrl(),songObj.getSongArtist(),songObj.getSongDuration()));
-                    jcAudios.add(JcAudio.createFromURL(songObj.getSongName(), songObj.getSongUrl()));
+                    if (songObj.getSongName().toLowerCase().contains(enter.toLowerCase())){
+                        listRes.add(new Song(songObj.getSongName(),songObj.getSongUrl(),songObj.getImageUrl(),songObj.getSongArtist(),songObj.getSongDuration()));
+                        jcAudios.add(JcAudio.createFromURL(songObj.getSongName(), songObj.getSongUrl()));
+                    }
                 }
-                adapter = new SongAdapter(getApplicationContext(),listSong);
-                jcPlayerView.initPlaylist(jcAudios, null);
-                listViewSong.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
+                if (listRes.size() > 0){
+                    adapter = new SongAdapter(getApplicationContext(),listRes);
+                    jcPlayerView.initPlaylist(jcAudios, null);
+                    listView_result.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(SearchResult.this, "Không tìm thấy kết quả!", Toast.LENGTH_SHORT).show();
+                }
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(ListSong.this, "FAILED!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SearchResult.this, "FAILED!", Toast.LENGTH_SHORT).show();
 
             }
         });
     }
-
 }

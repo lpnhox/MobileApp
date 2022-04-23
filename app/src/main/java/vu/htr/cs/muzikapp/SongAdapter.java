@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class SongAdapter extends BaseAdapter implements Filterable {
+public class SongAdapter extends BaseAdapter {
     private ArrayList<Song> listSong;
     private ArrayList<Song> listSongOld;
     Context context;
@@ -85,34 +85,5 @@ public class SongAdapter extends BaseAdapter implements Filterable {
             songDuration_list = view.findViewById(R.id.songDuration_list);
             cardView = view.findViewById(R.id.cardView_list);
         }
-    }
-
-    public Filter getFilter() {
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-                String strSearch = charSequence.toString();
-                if (strSearch.isEmpty()){
-                    listSong = listSongOld;
-                } else {
-                    ArrayList<Song> list = new ArrayList<>();
-                    for (Song song : listSongOld){
-                        if (song.getSongName().toLowerCase().contains(strSearch.toLowerCase())){
-                            list.add(song);
-                        }
-                    }
-                    listSong= list;
-                }
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = listSong;
-                return filterResults;
-            }
-
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                listSong = (ArrayList<Song>) filterResults.values;
-                notifyDataSetChanged();
-            }
-        };
     }
 }

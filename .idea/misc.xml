@@ -35,6 +35,16 @@
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/song_list_item.xml" value="0.264" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/songcore.xml" value="0.4" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/menu/app_menu.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MusikApp/app/src/main/res/drawable/buttonstyleithgradient_background.xml" value="0.2015" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MusikApp/app/src/main/res/drawable/buttonstyleithgradient_foreground.xml" value="0.2015" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MusikApp/app/src/main/res/drawable/gradientbackground_background.xml" value="0.2015" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MusikApp/app/src/main/res/drawable/gradientdescent.xml" value="0.2015" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MusikApp/app/src/main/res/drawable/ic_android_heart_24dp.xml" value="0.2015" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MusikApp/app/src/main/res/drawable/ic_phone.xml" value="0.2015" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MusikApp/app/src/main/res/layout/activity_forgot_password.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MusikApp/app/src/main/res/layout/activity_list_song.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MusikApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MusikApp/app/src/main/res/layout/activity_profile.xml" value="0.264" />
         <entry key="app/src/main/res/drawable/edit_text_layout.xml" value="0.244" />
         <entry key="app/src/main/res/layout/activity_add_music.xml" value="0.1897644927536232" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />

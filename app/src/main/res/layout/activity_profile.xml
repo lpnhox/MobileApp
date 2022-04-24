@@ -28,12 +28,12 @@
                 android:src="@drawable/photocercle" />
 
             <TextView
-                android:id="@+id/txtview_username"
+                android:id="@+id/displayname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:text="HuanRose"
+                android:text="User"
                 android:textColor="#fff"
                 android:textSize="21sp"
                 android:textStyle="bold" />
@@ -57,34 +57,39 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:src="@drawable/ic_email"/>
+
             <TextView
-                android:id="@+id/txtview_email"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical"
+                android:id="@+id/tv_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:text="saolove430@gmail.com"/>
+                android:text="******@gmail.com"
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:orientation="horizontal"
-            android:paddingLeft="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:paddingLeft="25dp">
+
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:src="@drawable/ic_phone"/>
+                android:src="@drawable/ic_phone" />
+
             <TextView
-                android:id="@+id/txtview_phone"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical"
+                android:id="@+id/tv_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:text="096 5806 864"/>
+                android:text="**********"
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_marginTop="25dp"
             android:orientation="horizontal"
@@ -96,13 +101,13 @@
                 android:layout_height="36dp"
                 android:src="@drawable/ic_user"/>
             <TextView
-                android:id="@+id/txtview_name"
+                android:id="@+id/tv_username"
                 android:textStyle="bold"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:text="HuanRose"/>
+                android:text="User"/>
         </LinearLayout>
 
     </LinearLayout>

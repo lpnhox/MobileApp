@@ -18,6 +18,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import vu.htr.cs.muzikapp.Profile;
 import vu.htr.cs.muzikapp.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -84,7 +85,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
                         return;
                     } else {
-                        Intent intent = new Intent(LoginActivity.this, ForgotPassword.class);
+                        Intent intent = new Intent(LoginActivity.this, Profile.class);
+                        finish();
                         startActivity(intent);
                     }
                 }

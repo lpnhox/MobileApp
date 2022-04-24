@@ -24,7 +24,7 @@ import vu.htr.cs.muzikapp.login.User;
 public class Profile extends AppCompatActivity {
     TextView displayname,tv_username,tv_email,tv_phone;
     String uid;
-    Button btn_logout;
+    Button btn_logout,btn_change_pass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +36,7 @@ public class Profile extends AppCompatActivity {
         tv_email=findViewById(R.id.tv_email);
         tv_phone=findViewById(R.id.tv_phone);
         btn_logout=findViewById(R.id.btn_logout);
+        btn_change_pass=findViewById(R.id.btn_change_pass);
 
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         //uri hinh
@@ -57,6 +58,13 @@ public class Profile extends AppCompatActivity {
                     startActivity(reload);
                 }
             });
+            btn_change_pass.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(Profile.this,ChangePassword.class));
+                }
+            });
+
 
         }else
         {
@@ -74,7 +82,6 @@ public class Profile extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot ds : snapshot.getChildren()){
                     if(uid.equals(ds.getKey())){
-                        Toast.makeText(Profile.this,"Vo duoc roi",Toast.LENGTH_SHORT).show();
                         User curUser= ds.getValue(User.class);
                         displayname.setText(curUser.getUserName());
                         tv_username.setText(curUser.getUserName());

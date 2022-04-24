@@ -25,9 +25,10 @@
             android:layout_marginLeft="25dp"
             android:layout_marginEnd="21dp"
             android:background="@drawable/edit_text_layout"
-            android:hint="Search Here"
+            android:hint="Tìm kiếm bài hát"
             android:textColor="@color/White"
-            android:padding="5dp">
+            android:padding="5dp"
+            tools:ignore="Autofill,HardcodedText,ObsoleteLayoutParam,RtlHardcoded,TextFields">
 
         </EditText>
 
@@ -36,7 +37,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_baseline_search_24"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            tools:ignore="ContentDescription">
         </ImageView>
     </LinearLayout>
 

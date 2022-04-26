@@ -34,7 +34,7 @@
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/favor_song.xml" value="0.25" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/song_favoritem.xml" value="0.264" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/song_item.xml" value="0.25" />
-        <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/song_list_item.xml" value="0.264" />
+        <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/song_list_item.xml" value="0.4" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/layout/songcore.xml" value="0.4" />
         <entry key="..\:/Mobile/MobileApp/app/src/main/res/menu/app_menu.xml" value="0.25" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MusikApp/app/src/main/res/drawable/button1_bg.xml" value="0.121" />
@@ -53,6 +53,11 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MusikApp/app/src/main/res/layout/activity_profile.xml" value="0.264" />
         <entry key="app/src/main/res/drawable/edit_text_layout.xml" value="0.244" />
         <entry key="app/src/main/res/layout/activity_add_music.xml" value="0.1897644927536232" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.13722826086956522" />
+        <entry key="app/src/main/res/layout/activity_menu.xml" value="0.182518115942029" />
+        <entry key="app/src/main/res/layout/header_nav_layout.xml" value="0.182518115942029" />
+        <entry key="app/src/main/res/menu/app_menu.xml" value="0.21743589743589745" />
+        <entry key="app/src/main/res/menu/menu_nav.xml" value="0.21743589743589745" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
       </map>
     </option>

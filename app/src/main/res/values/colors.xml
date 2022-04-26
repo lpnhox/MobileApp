@@ -12,13 +12,13 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="Sakura">#FFB7C5</color>
     <color name="Sky" >#8ae5ff</color>
-    <color name="myred" >#ec275f</color>
+    <color name="myred" >#EC275F</color>
     <color name="Pink" >#f25477</color>
     <color name="Cherry" >#ffdcdc</color>
     <color name="myskygarden" >#d4eaee</color>
     <color name="md_black_1000">#000000</color>
     <color name="md_cyan_A700">#00B8D4</color>
-
+    <color name="transparent">#80000000</color>
     <color name="colorBackground">#fff</color>
     <color name="actionbarOpacity">#00000000</color>
     <color name="colorIcon">#cccccc</color>

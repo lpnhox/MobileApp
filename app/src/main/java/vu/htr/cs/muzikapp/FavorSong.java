@@ -2,13 +2,17 @@ package vu.htr.cs.muzikapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -35,7 +39,7 @@ import java.util.List;
 
 import vu.htr.cs.muzikapp.favourites.Favourite;
 
-public class FavorSong extends AppCompatActivity {
+public class FavorSong extends Fragment {
 
     private boolean checkPermission = false;
     FirebaseUser user;
@@ -54,13 +58,15 @@ public class FavorSong extends AppCompatActivity {
     List<String> userFvSID;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_faver_song);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        return inflater.inflate(R.layout.activity_faver_song, container, false);
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
         user= FirebaseAuth.getInstance().getCurrentUser();
-        getSupportActionBar().hide();
 
-        lvFavorMusic = findViewById(R.id.listFavorMusic);
+        lvFavorMusic = getView().findViewById(R.id.listFavorMusic);
         songsNameList = new ArrayList<>();
         songUrlList = new ArrayList<>();
         songsArtistList = new ArrayList<>();
@@ -69,7 +75,7 @@ public class FavorSong extends AppCompatActivity {
 
         userFvSID= new ArrayList<>();
         jcAudios=new ArrayList<>();
-        jcPlayerView = findViewById(R.id.jcplayerfavor);
+        jcPlayerView = getView().findViewById(R.id.jcplayerfavor);
 
         getUserFavoriteSongs();
         lvFavorMusic.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -109,7 +115,7 @@ public class FavorSong extends AppCompatActivity {
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
-                                Toast.makeText(FavorSong.this, "Không thể xóa!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Không thể xóa!", Toast.LENGTH_SHORT).show();
                             }
                         });
 
@@ -117,11 +123,11 @@ public class FavorSong extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(FavorSong.this, "FAILED!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "FAILED!", Toast.LENGTH_SHORT).show();
                     }
                 });
-                Intent reload=new Intent(FavorSong.this,FavorSong.class);
-                finish();
+                Intent reload=new Intent(getActivity(),FavorSong.class);
+                getActivity().finish();
                 startActivity(reload);
                 return false;
             }
@@ -146,22 +152,22 @@ public class FavorSong extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(FavorSong.this, "FAILED!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "FAILED!", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.app_menu,menu);
-        return super.onCreateOptionsMenu(menu);
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.app_menu, menu);
+        super.onCreateOptionsMenu(menu,inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==R.id.uploadItem){
             if(validatePermissions()){
-                Intent intent = new Intent(this,AddMusic.class);
+                Intent intent = new Intent(getActivity(),AddMusic.class);
                 startActivity(intent);
             }
 
@@ -170,7 +176,7 @@ public class FavorSong extends AppCompatActivity {
     }
     private boolean validatePermissions(){
 
-        Dexter.withContext(FavorSong.this).withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+        Dexter.withContext(getContext()).withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
                 .withListener(new PermissionListener() {
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse response) {
@@ -210,7 +216,7 @@ public class FavorSong extends AppCompatActivity {
                     }
                 }
 
-                adapter = new ListAdapter(getApplicationContext(),songsNameList,thumbnail,songsArtistList,songsDurationList);
+                adapter = new ListAdapter(getActivity().getApplicationContext(),songsNameList,thumbnail,songsArtistList,songsDurationList);
                 jcPlayerView.initPlaylist(jcAudios, null);
                 lvFavorMusic.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
@@ -219,7 +225,7 @@ public class FavorSong extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(FavorSong.this, "FAILED!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "FAILED!", Toast.LENGTH_SHORT).show();
 
             }
         });

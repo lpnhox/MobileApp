@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText">
+
+    <item
+        android:id="@+id/nav_account"
+        android:title="Tài khoản" />
+
+    <item
+        android:id="@+id/nav_favorite"
+        android:title="Danh sách yêu thích" />
+
+    <item
+        android:id="@+id/nav_listsong"
+        android:title="Danh sách bài hát" />
+    <item
+        android:id="@+id/nav_add"
+        android:title="Thêm nhạc" />
 
 </menu>
+

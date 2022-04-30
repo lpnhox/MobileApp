@@ -16,9 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/MyTheme">
         <activity
-            android:name=".MenuActivity"
-            android:exported="false" />
-        <activity
             android:name=".login.ForgotPassword"
             android:exported="false" />
         <activity

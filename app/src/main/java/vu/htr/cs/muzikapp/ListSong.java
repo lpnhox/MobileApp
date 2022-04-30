@@ -2,10 +2,13 @@ package vu.htr.cs.muzikapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Filter;
@@ -31,7 +34,7 @@ import java.util.List;
 
 import vu.htr.cs.muzikapp.favourites.Favourite;
 
-public class ListSong extends AppCompatActivity {
+public class ListSong extends Fragment {
     FirebaseUser user;
 
     ListView listViewSong;
@@ -44,19 +47,21 @@ public class ListSong extends AppCompatActivity {
     List<JcAudio> jcAudios;
 
     List<String> songIds;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_song);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        return inflater.inflate(R.layout.activity_list_song, container, false);
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
 
-        searchSong_btn = findViewById(R.id.searchSong_btn);
-        searchView_song = findViewById(R.id.searchView_song);
-        listViewSong = findViewById(R.id.listViewSong);
+        searchSong_btn = getView().findViewById(R.id.searchSong_btn);
+        searchView_song = getView().findViewById(R.id.searchView_song);
+        listViewSong = getView().findViewById(R.id.listViewSong);
         listSong = new ArrayList<>();
 
         jcAudios=new ArrayList<>();
-        jcPlayerView = findViewById(R.id.jcplayersong);
+        jcPlayerView = getView().findViewById(R.id.jcplayersong);
         songIds = new ArrayList<>();
 
         user= FirebaseAuth.getInstance().getCurrentUser();
@@ -67,9 +72,9 @@ public class ListSong extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (searchView_song.getText().toString().isEmpty()){
-                    Toast.makeText(ListSong.this, "Vui lòng nhập tên bài hát!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Vui lòng nhập tên bài hát!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Intent resultIntent = new Intent(ListSong.this, SearchResult.class);
+                    Intent resultIntent = new Intent(getActivity(), SearchResult.class);
                     resultIntent.putExtra("enter",searchView_song.getText().toString());
                     startActivity(resultIntent);
                 }
@@ -102,12 +107,12 @@ public class ListSong extends AppCompatActivity {
                         String id = favorDbref.push().getKey();
                         Favourite fv=new Favourite(user.getEmail(), songIds.get(i));
                         favorDbref.child(id).setValue(fv);
-                        Toast.makeText(ListSong.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Thêm thành công", Toast.LENGTH_SHORT).show();
 
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(ListSong.this, "FAILED!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "FAILED!", Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -127,7 +132,7 @@ public class ListSong extends AppCompatActivity {
                     listSong.add(new Song(songObj.getSongName(),songObj.getSongUrl(),songObj.getImageUrl(),songObj.getSongArtist(),songObj.getSongDuration()));
                     jcAudios.add(JcAudio.createFromURL(songObj.getSongName(), songObj.getSongUrl()));
                 }
-                adapter = new SongAdapter(getApplicationContext(),listSong);
+                adapter = new SongAdapter(getActivity().getApplicationContext(),listSong);
                 jcPlayerView.initPlaylist(jcAudios, null);
                 listViewSong.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
@@ -136,7 +141,7 @@ public class ListSong extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(ListSong.this, "FAILED!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "FAILED!", Toast.LENGTH_SHORT).show();
 
             }
         });

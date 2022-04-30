@@ -3,6 +3,7 @@ package vu.htr.cs.muzikapp;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,7 +15,9 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -36,7 +39,7 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-public class AddMusic extends AppCompatActivity {
+public class AddMusic extends Fragment {
     Uri uriSong, image;
     byte[] bytes;
     String fileName, songUrl, imageUrl;
@@ -48,20 +51,22 @@ public class AddMusic extends AppCompatActivity {
     ImageView selectImage;
     Button uploadButton;
     ImageButton selectSong;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_music);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("Upload Song");
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        return inflater.inflate(R.layout.activity_add_music, container, false);
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        Objects.requireNonNull(((AppCompatActivity)getActivity()).getSupportActionBar()).setTitle("Upload Song");
         storageReference = FirebaseStorage.getInstance().getReference();
-        progressDialog = new ProgressDialog(this);
+        progressDialog = new ProgressDialog(getActivity());
 
-        selectSongNameEditText = findViewById(R.id.selectSong);
-        selectImage = findViewById(R.id.selectImage);
-        uploadButton = findViewById(R.id.uploadSongButton);
-        artistName = findViewById(R.id.artistNameEditText);
-        selectSong = findViewById(R.id.selectSongButton);
+        selectSongNameEditText = getView().findViewById(R.id.selectSong);
+        selectImage = getView().findViewById(R.id.selectImage);
+        uploadButton = getView().findViewById(R.id.uploadSongButton);
+        artistName = getView().findViewById(R.id.artistNameEditText);
+        selectSong = getView().findViewById(R.id.selectSongButton);
 
         selectSong.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +81,7 @@ public class AddMusic extends AppCompatActivity {
                 pickImage();
             }
         });
-        uploadButton = findViewById(R.id.uploadSongButton);
+        uploadButton = getView().findViewById(R.id.uploadSongButton);
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,10 +105,10 @@ public class AddMusic extends AppCompatActivity {
 
     // AFTER SELECTING THE SONG FROM MOBILE STORAGE
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null) {
-            if (requestCode == 1 && resultCode == RESULT_OK) {
+            if (requestCode == 1 && resultCode == getActivity().RESULT_OK) {
                 uriSong = data.getData();
 //                Log.i("uri", songName.toString());
                 fileName = getFileName(uriSong);
@@ -111,11 +116,11 @@ public class AddMusic extends AppCompatActivity {
                 songLength = getSongDuration(uriSong);
                 Log.i("duration", songLength);
             }
-            if (requestCode == 2 && resultCode == RESULT_OK){
+            if (requestCode == 2 && resultCode == getActivity().RESULT_OK){
 //                Log.i("image",data.toString());
                 image = data.getData();
                 try {
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),image);
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getActivity().getApplicationContext().getContentResolver(),image);
                     selectImage.setImageBitmap(bitmap);
                     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
@@ -129,16 +134,16 @@ public class AddMusic extends AppCompatActivity {
 
     public void upload(){
         if (uriSong == null){
-            Toast.makeText(this, "Please select a song", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Please select a song", Toast.LENGTH_SHORT).show();
         }
         else if (selectSongNameEditText.getText().toString().equals("")){
-            Toast.makeText(this, "Song name cannot be empty!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Song name cannot be empty!", Toast.LENGTH_SHORT).show();
         }
         else if(artistName.getText().toString().equals("")){
-            Toast.makeText(this, "Please add Artist, album name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Please add Artist, album name", Toast.LENGTH_SHORT).show();
         }
         else if (image == null){
-            Toast.makeText(this, "Please select a Thumbnail", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Please select a Thumbnail", Toast.LENGTH_SHORT).show();
         }
         else {
             fileName = selectSongNameEditText.getText().toString();
@@ -197,7 +202,7 @@ public class AddMusic extends AppCompatActivity {
             public void onFailure(@NonNull Exception e) {
                 //Log.i("success", "upload");
                 progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "Upload Failed! Please Try again!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getApplicationContext(), "Upload Failed! Please Try again!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -212,13 +217,13 @@ public class AddMusic extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 Log.i("database", "upload success");
                 progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "Song Uploaded to Database", Toast.LENGTH_SHORT).show();
-                finish();
+                Toast.makeText(getActivity().getApplicationContext(), "Song Uploaded to Database", Toast.LENGTH_SHORT).show();
+                getActivity().finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -228,7 +233,7 @@ public class AddMusic extends AppCompatActivity {
      public String getFileName(Uri uri) {
          String result = null;
          if (Objects.equals(uri.getScheme(), "content")) {
-             try (Cursor cursor = getContentResolver().query(uri, null, null, null, null)) {
+             try (Cursor cursor = getActivity().getApplicationContext().getContentResolver().query(uri, null, null, null, null)) {
                  if (cursor != null && cursor.moveToFirst()) {
 //                     result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
                      result = cursor.getString(1);
@@ -249,7 +254,7 @@ public class AddMusic extends AppCompatActivity {
 
     public String getSongDuration(Uri song){
         MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-        mediaMetadataRetriever.setDataSource(getApplicationContext(),song);
+        mediaMetadataRetriever.setDataSource(getActivity().getApplicationContext(),song);
         String durationString = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
         long time = Long.parseLong(durationString);
         int minutes = (int) TimeUnit.MILLISECONDS.toMinutes(time);
